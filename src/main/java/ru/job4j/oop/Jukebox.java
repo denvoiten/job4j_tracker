@@ -16,6 +16,5 @@ public class Jukebox {
         musicBox.music(1);
         musicBox.music(2);
         musicBox.music(36);
-
     }
 }
