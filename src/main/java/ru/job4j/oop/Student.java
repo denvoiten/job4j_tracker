@@ -1,7 +1,5 @@
 package ru.job4j.oop;
 
-import jdk.jshell.DeclarationSnippet;
-
 public class Student {
 
     public void music() {
