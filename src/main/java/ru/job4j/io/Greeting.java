@@ -1,6 +1,5 @@
 package ru.job4j.io;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Greeting {
