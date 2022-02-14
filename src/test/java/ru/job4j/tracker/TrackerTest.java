@@ -2,11 +2,15 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertEquals;
 
 public class TrackerTest {
 
@@ -80,5 +84,45 @@ public class TrackerTest {
         int id = bug.getId();
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
+    }
+
+    @Test
+    public void whenTestItemSortByNameAscending() {
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Oliver"));
+        items.add(new Item("Jack"));
+        items.add(new Item("Harry"));
+        items.add(new Item("Jacob"));
+        items.add(new Item("Charley"));
+        items.add(new Item("Oscar"));
+        Collections.sort(items, new ItemAscByName());
+        List<Item> expected = new ArrayList<>();
+        expected.add(new Item("Charley"));
+        expected.add(new Item("Harry"));
+        expected.add(new Item("Jack"));
+        expected.add(new Item("Jacob"));
+        expected.add(new Item("Oliver"));
+        expected.add(new Item("Oscar"));
+        assertEquals(items, expected);
+    }
+
+    @Test
+    public void whenTestItemSortByNameDesc() {
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Oliver"));
+        items.add(new Item("Jack"));
+        items.add(new Item("Harry"));
+        items.add(new Item("Jacob"));
+        items.add(new Item("Charley"));
+        items.add(new Item("Oscar"));
+        Collections.sort(items, new ItemDescByName());
+        List<Item> expected = new ArrayList<>();
+        expected.add(new Item("Oscar"));
+        expected.add(new Item("Oliver"));
+        expected.add(new Item("Jacob"));
+        expected.add(new Item("Jack"));
+        expected.add(new Item("Harry"));
+        expected.add(new Item("Charley"));
+        assertEquals(items, expected);
     }
 }
