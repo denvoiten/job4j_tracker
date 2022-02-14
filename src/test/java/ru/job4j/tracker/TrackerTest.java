@@ -95,7 +95,7 @@ public class TrackerTest {
         items.add(new Item("Jacob"));
         items.add(new Item("Charley"));
         items.add(new Item("Oscar"));
-        Collections.sort(items, new ItemAscByName());
+        items.sort(new ItemAscByName());
         List<Item> expected = new ArrayList<>();
         expected.add(new Item("Charley"));
         expected.add(new Item("Harry"));
@@ -115,7 +115,7 @@ public class TrackerTest {
         items.add(new Item("Jacob"));
         items.add(new Item("Charley"));
         items.add(new Item("Oscar"));
-        Collections.sort(items, new ItemDescByName());
+        items.sort(new ItemDescByName());
         List<Item> expected = new ArrayList<>();
         expected.add(new Item("Oscar"));
         expected.add(new Item("Oliver"));
