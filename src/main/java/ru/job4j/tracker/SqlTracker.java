@@ -10,7 +10,15 @@ public class SqlTracker implements Store, AutoCloseable {
 
     private Connection cn;
 
-     public void init() {
+    public SqlTracker() {
+
+    }
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
+    public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
