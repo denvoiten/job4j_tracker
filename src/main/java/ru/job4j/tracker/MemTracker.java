@@ -58,7 +58,20 @@ public class MemTracker implements Store {
         boolean rsl = index != -1;
         if (rsl) {
             items.remove(index);
+            ids--;
         }
         return rsl;
+    }
+
+    public static void main(String[] args) {
+        double start;
+        double finish;
+        MemTracker memTracker = new MemTracker();
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 99000; i++) {
+            memTracker.add(new Item("item #" + i));
+        }
+        finish = System.currentTimeMillis();
+        System.out.printf("%nApp running time: %f%n%n", (finish - start) / 1000);
     }
 }
