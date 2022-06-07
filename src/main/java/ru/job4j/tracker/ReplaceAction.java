@@ -21,7 +21,7 @@ public class ReplaceAction implements UserAction {
         if (store.replace(id, item)) {
             out.println("Заявка изменена успешно.");
         } else {
-            out.println("Ошибка замены заявки.");
+            out.println("Заявка с id=" + id + " не найдена.");
         }
         return true;
     }
