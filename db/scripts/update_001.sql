@@ -9,3 +9,10 @@ create table cars(
     model varchar(255),
     created timestamp
 );
+
+create table students(
+    id serial primary key,
+    name varchar,
+    age INTEGER,
+    city varchar
+);

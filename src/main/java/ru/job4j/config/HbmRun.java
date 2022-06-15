@@ -6,8 +6,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.sql.Timestamp;
-
 public class HbmRun {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -19,9 +17,11 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Car car = Car.of("Toyota", new Timestamp(1459510232000L), "Sidorov Ivan");
-            session.save(car);
-
+            session.createQuery("insert into Student (name, age, city) "
+                            + "select concat(s.name, 'NEW'), s.age + 5, s.city "
+                            + "from Student s where s.id = :fId")
+                    .setParameter("fId", 1)
+                    .executeUpdate();
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
