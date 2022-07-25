@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.react.Observe;
+
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -110,6 +112,19 @@ public class SqlTracker implements Store, AutoCloseable {
         }
         return items;
     }
+
+    public void findAllByReact(Observe<Item> observe) {
+        String sql = "SELECT * FROM items;";
+        try (PreparedStatement statement = cn.prepareStatement(sql);
+             ResultSet rslSet = statement.executeQuery()) {
+            while (rslSet.next()) {
+                observe.receive(getItem(rslSet));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public List<Item> findByName(String key) {
