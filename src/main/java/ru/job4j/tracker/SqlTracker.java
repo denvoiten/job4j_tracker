@@ -125,7 +125,6 @@ public class SqlTracker implements Store, AutoCloseable {
         }
     }
 
-
     @Override
     public List<Item> findByName(String key) {
         String sql = "SELECT * FROM items WHERE name = ?;";
